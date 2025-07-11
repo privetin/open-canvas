@@ -39,7 +39,6 @@ function ViewRawText({
     >
       <TooltipIconButton
         tooltip={`View ${isRawView ? "rendered" : "raw"} markdown`}
-        variant="outline"
         delayDuration={400}
         onClick={() => setIsRawView((p) => !p)}
       >

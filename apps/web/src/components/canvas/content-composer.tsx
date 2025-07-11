@@ -61,7 +61,7 @@ export function ContentComposerChatInterfaceComponent(
   } = graphData;
   const { getUserThreads } = useThreadContext();
   const [isRunning, setIsRunning] = useState(false);
-  const messageRef = useRef<HTMLDivElement>(null);
+  const messageRef = useRef<HTMLDivElement>(null!);
   const ffmpegRef = useRef(new FFmpeg());
 
   async function onNew(message: AppendMessage): Promise<void> {
@@ -95,7 +95,7 @@ export function ContentComposerChatInterfaceComponent(
         .map((a) => a.file)
         .filter((f): f is File => f != null);
       const fileList = arrayToFileList(files);
-      if (fileList) {
+      if (fileList && messageRef.current) {
         const documentsResult = await convertDocuments({
           ffmpeg: ffmpegRef.current,
           messageRef,

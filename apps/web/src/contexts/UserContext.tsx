@@ -32,6 +32,12 @@ export function UserProvider({ children }: { children: ReactNode }) {
       return user;
     }
 
+    // Only create Supabase client in the browser
+    if (typeof window === "undefined") {
+      setLoading(false);
+      return undefined;
+    }
+
     const supabase = createSupabaseClient();
 
     const {

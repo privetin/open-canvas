@@ -13,8 +13,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const apiKey = process.env.LANGCHAIN_API_KEY;
+    if (!apiKey) {
+      console.error("LANGCHAIN_API_KEY environment variable is not set");
+      return NextResponse.json(
+        { error: "LangSmith API key not configured." },
+        { status: 500 }
+      );
+    }
+
     const lsClient = new Client({
-      apiKey: process.env.LANGCHAIN_API_KEY,
+      apiKey: apiKey,
     });
 
     const feedback = await lsClient.createFeedback(runId, feedbackKey, {
@@ -54,8 +63,17 @@ export async function GET(req: NextRequest) {
       );
     }
 
+    const apiKey = process.env.LANGCHAIN_API_KEY;
+    if (!apiKey) {
+      console.error("LANGCHAIN_API_KEY environment variable is not set");
+      return NextResponse.json(
+        { error: "LangSmith API key not configured." },
+        { status: 500 }
+      );
+    }
+
     const lsClient = new Client({
-      apiKey: process.env.LANGCHAIN_API_KEY,
+      apiKey: apiKey,
     });
 
     const runFeedback: Feedback[] = [];

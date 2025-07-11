@@ -142,7 +142,7 @@ export function ReflectionsDialog(props: ReflectionsDialogProps) {
             )}
           </DialogTitle>
           <DialogDescription className="mt-2 text-md font-light text-gray-600">
-            <TighterText>
+            <TighterText as="span">
               {isLoadingReflections ? (
                 "Loading reflections..."
               ) : reflections?.content || reflections?.styleRules ? (
